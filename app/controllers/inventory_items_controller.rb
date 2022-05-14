@@ -1,6 +1,7 @@
 class InventoryItemsController < ApplicationController
   def index
     @merchant = Merchant.find(params[:id])
+    @items = @merchant.inventory_items
   end
 
   def new
@@ -19,6 +20,19 @@ class InventoryItemsController < ApplicationController
 
       redirect_to "/merchants/#{merchant.id}/inventory_items/new"
     end
+  end
+
+  def edit
+    @merchant = Merchant.find(params[:id])
+    @item = InventoryItem.find(params[:item_id])
+  end
+
+  def update
+    item = InventoryItem.find(params[:item_id])
+
+    item.update(item_params)
+    redirect_to "/merchants/#{params[:id]}/inventory_items"
+    flash[:alert] = "Successfully Updated Item"
   end
 
   private

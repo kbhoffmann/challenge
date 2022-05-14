@@ -1,3 +1,13 @@
 <h1>Inventory Items</h1>
 
 <h3><%= link_to "Add New Item", "/merchants/#{@merchant.id}/inventory_items/new" %></h3>
+
+<% @items.each do |item| %>
+  <%= item.name %>
+  <%= item.description %>
+  <%= item.price %>
+  <%= item.inventory_count %>
+  <%= item.id %>
+  <%= link_to "Edit #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}/edit" %>
+  <%= link_to "Delete #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}", method: :delete %>
+<% end  %>
