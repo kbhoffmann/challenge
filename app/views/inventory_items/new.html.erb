@@ -1,0 +1,11 @@
+<%= form_with url: "/merchants/#{@merchant.id}/inventory_items", method: :post, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :description %>
+  <%= form.text_field :description %>
+  <%= form.label :inventory_count, 'Inventory Count' %>
+  <%= form.text_field :inventory_count %>
+  <%= form.label :price %>
+  <%= form.text_field :price %>
+  <%= form.submit "Submit"%>
+<% end %>
