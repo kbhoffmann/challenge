@@ -1,15 +1,15 @@
 class InventoryItemsController < ApplicationController
   def index
-    @merchant = Merchant.find(params[:id])
+    @merchant = Merchant.find(params[:merchant_id])
     @items = @merchant.inventory_items
   end
 
   def new
-    @merchant = Merchant.find(params[:id])
+    @merchant = Merchant.find(params[:merchant_id])
   end
 
   def create
-    merchant = Merchant.find(params[:id])
+    merchant = Merchant.find(params[:merchant_id])
     item = merchant.inventory_items.new(item_params)
 
     if item.save
@@ -23,23 +23,22 @@ class InventoryItemsController < ApplicationController
   end
 
   def edit
-    @merchant = Merchant.find(params[:id])
-    @item = InventoryItem.find(params[:item_id])
+    @merchant = Merchant.find(params[:merchant_id])
+    @item = InventoryItem.find(params[:id])
   end
 
   def update
-    item = InventoryItem.find(params[:item_id])
+    item = InventoryItem.find(params[:id])
 
     item.update(item_params)
-    redirect_to "/merchants/#{params[:id]}/inventory_items"
+    redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
     flash[:alert] = "Successfully Updated Item"
   end
 
   def destroy
-    InventoryItem.find(params[:item_id]).destroy
-    redirect_to "/merchants/#{params[:id]}/inventory_items"
+    InventoryItem.find(params[:id]).destroy
+    redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
   end
-
 
   private
 

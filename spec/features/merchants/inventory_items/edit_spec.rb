@@ -22,7 +22,7 @@ RSpec.describe 'Merchant Inventory Items Edit' do
     fill_in :description, with: "New Item Description"
     fill_in :inventory_count, with: 50
     fill_in :price, with: 60.00
-    click_button "Edit Item"
+    click_on "Edit Item"
 
     expect(current_path).to eq("/merchants/#{merchant_1.id}/inventory_items")
 
