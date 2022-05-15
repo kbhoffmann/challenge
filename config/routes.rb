@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/merchants/:id/inventory_items/:item_id/edit', to: 'inventory_items#edit'
   post '/merchants/:id/inventory_items', to: 'inventory_items#create'
   patch '/merchants/:id/inventory_items/:item_id', to: 'inventory_items#update'
+  delete '/merchants/:id/inventory_items/:item_id', to: 'inventory_items#destroy'
 end

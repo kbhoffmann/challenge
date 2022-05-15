@@ -35,4 +35,17 @@ RSpec.describe 'merchant item index page' do
     expect(current_path).to eq("/merchants/#{merchant.id}/inventory_items/#{item_1.id}/edit")
   end
 
+  it 'each inventory item has a link to delete it' do
+    merchant = Merchant.create!(name: "Merchant One Name")
+    item_1 = merchant.inventory_items.create!(name: "Item 1 Name", description: "Item 1 Description", price: 40.00, inventory_count: 100)
+    item_2 = merchant.inventory_items.create!(name: "Item 2 Name", description: "Item 2 Description", price: 20.00, inventory_count: 200)
+
+    visit "/merchants/#{merchant.id}/inventory_items"
+
+    click_link "Delete #{item_1.name}"
+
+    expect(current_path).to eq("/merchants/#{merchant.id}/inventory_items")
+    expect(page).to_not have_content(item_1.name)
+    expect(page).to have_content(item_2.name)
+  end
 end

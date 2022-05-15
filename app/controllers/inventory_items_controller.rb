@@ -35,6 +35,12 @@ class InventoryItemsController < ApplicationController
     flash[:alert] = "Successfully Updated Item"
   end
 
+  def destroy
+    InventoryItem.find(params[:item_id]).destroy
+    redirect_to "/merchants/#{params[:id]}/inventory_items"
+  end
+
+
   private
 
   def item_params
