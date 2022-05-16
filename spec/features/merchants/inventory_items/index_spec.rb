@@ -7,11 +7,12 @@ RSpec.describe 'merchant item index page' do
     item_2 = merchant_1.inventory_items.create!(name: "Item 2 Name", description: "Item 2 Description", price: 20.00, inventory_count: 200)
     merchant_2 = Merchant.create!(name: "Merchant Two Name")
     item_3 = merchant_2.inventory_items.create!(name: "Item 3 Name", description: "Item 3 Description", price: 100.00, inventory_count: 50)
-
     visit "/merchants/#{merchant_1.id}/inventory_items"
 
     expect(page).to have_content("Item 1 Name")
+    expect(page).to have_content(item_1.status)
     expect(page).to have_content("Item 2 Name")
+    expect(page).to have_content(item_2.status)
     expect(page).to_not have_content("Item 3 Name")
   end
 
@@ -58,6 +59,10 @@ RSpec.describe 'merchant item index page' do
     expect(deleted_item.status).to eq('deleted')
     expect(deleted_item.deletion_comments).to eq("Item discontiued")
     expect(item_2.status).to eq('active')
+
     expect(current_path).to eq("/merchants/#{merchant.id}/inventory_items")
   end
+
+  xit 'shows deletion comments if item status is deleted' do
+  end 
 end
