@@ -32,13 +32,17 @@ class InventoryItemsController < ApplicationController
     flash[:alert] = "Successfully Updated Item"
   end
 
-  def destroy
+  def delete_item_form
+    @item = InventoryItem.find(params[:id])
+  end
+
+  def delete_item
     item = InventoryItem.find(params[:id])
-    item.update(status: 1)
+    comments = params["deletion_comments"]
+    item.update(status: 1, deletion_comments: comments )
 
     redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
   end
-
 
   private
 

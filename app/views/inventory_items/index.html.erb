@@ -8,6 +8,6 @@
   <p>Price: $<%= item.price %></p>
   <p>Inventory Count: <%= item.inventory_count %></p>
   <p><%= link_to "Edit #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}/edit" %></p>
-  <p><%= link_to "Delete #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}", method: :delete %></p>
+  <p><%= link_to "Delete #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}/delete_item"%></p>
   <hr>
 <% end  %>
