@@ -1,15 +1,13 @@
 class InventoryItemsController < ApplicationController
+  before_action :merchant
+
   def index
-    @merchant = Merchant.find(params[:merchant_id])
     @items = @merchant.inventory_items
   end
 
-  def new
-    @merchant = Merchant.find(params[:merchant_id])
-  end
+  def new; end
 
   def create
-    merchant = Merchant.find(params[:merchant_id])
     item = merchant.inventory_items.new(item_params)
 
     if item.save
@@ -23,7 +21,6 @@ class InventoryItemsController < ApplicationController
   end
 
   def edit
-    @merchant = Merchant.find(params[:merchant_id])
     @item = InventoryItem.find(params[:id])
   end
 
@@ -40,7 +37,12 @@ class InventoryItemsController < ApplicationController
     redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
   end
 
+
   private
+
+  def merchant
+    @merchant = Merchant.find(params[:merchant_id])
+  end
 
   def item_params
     params.permit(:name, :description, :inventory_count, :price)
