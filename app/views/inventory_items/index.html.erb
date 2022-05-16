@@ -8,8 +8,9 @@
   <p>Price: $<%= item.price %></p>
   <p>Inventory Count: <%= item.inventory_count %></p>
   <p>Item Status: <%= item.status %></p>
-    <% if item.deletion_comments %>
+    <% if item.status == 'deleted' %>
       <p>Deletion Comments: <%= item.deletion_comments %></p>
+      <p><%= link_to "Un-Delete #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}/un_delete_item"%></p>
     <% end  %>
   <p><%= link_to "Edit #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}/edit" %></p>
   <p><%= link_to "Delete #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}/delete_item"%></p>
