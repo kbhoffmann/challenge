@@ -62,4 +62,25 @@ RSpec.describe 'merchant item index page' do
     expect(item_2.status).to eq('active')
     expect(current_path).to eq("/merchants/#{merchant.id}/inventory_items")
   end
+
+  it 'can un-delete an item' do
+    merchant = Merchant.create!(name: "Merchant One Name")
+    item_1 = merchant.inventory_items.create!(name: "Item 1 Name", description: "Item 1 Description", price: 40.00, inventory_count: 100, status: 1, deletion_comments: "Item discontinued")
+    item_2 = merchant.inventory_items.create!(name: "Item 2 Name", description: "Item 2 Description", price: 20.00, inventory_count: 200)
+
+    visit "/merchants/#{merchant.id}/inventory_items"
+
+    expect(item_1.status).to eq('deleted')
+    expect(item_1.deletion_comments).to eq("Item discontinued")
+    expect(item_2.status).to eq('active')
+
+    click_link "Un-Delete #{item_1.name}"
+
+    expect(current_path).to eq("/merchants/#{merchant.id}/inventory_items")
+
+    un_deleted_item = InventoryItem.find(item_1.id)
+    expect(un_deleted_item.status).to eq('active')
+    expect(un_deleted_item.deletion_comments).to be nil
+    expect(item_2.status).to eq('active')
+  end
 end

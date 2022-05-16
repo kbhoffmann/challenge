@@ -5,14 +5,15 @@
 <% @items.each do |item| %>
   <p>Name: <%= item.name %></p>
   <p>Description: <%= item.description %></p>
-  <p>Price: $<%= item.price %></p>
+  <p>Price: <%= number_to_currency(item.price) %></p>
   <p>Inventory Count: <%= item.inventory_count %></p>
+  <p><%= link_to "Edit #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}/edit" %></p>
   <p>Item Status: <%= item.status %></p>
     <% if item.status == 'deleted' %>
       <p>Deletion Comments: <%= item.deletion_comments %></p>
-      <p><%= link_to "Un-Delete #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}/un_delete_item"%></p>
+      <p><%= link_to "Un-Delete #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}/un_delete", method: :patch%></p>
+    <% else %>
+      <p><%= link_to "Delete #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}/delete_item"%></p>
     <% end  %>
-  <p><%= link_to "Edit #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}/edit" %></p>
-  <p><%= link_to "Delete #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}/delete_item"%></p>
   <hr>
 <% end  %>

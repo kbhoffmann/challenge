@@ -44,6 +44,13 @@ class InventoryItemsController < ApplicationController
     redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
   end
 
+  def un_delete_item
+    item = InventoryItem.find(params[:id])
+    item.update(status: 0, deletion_comments: nil )
+
+    redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
+  end
+
   private
 
   def merchant
