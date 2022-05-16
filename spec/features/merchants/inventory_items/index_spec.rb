@@ -58,11 +58,8 @@ RSpec.describe 'merchant item index page' do
     deleted_item = InventoryItem.find(item_1.id)
     expect(deleted_item.status).to eq('deleted')
     expect(deleted_item.deletion_comments).to eq("Item discontiued")
+    expect(page).to have_content(deleted_item.deletion_comments)
     expect(item_2.status).to eq('active')
-
     expect(current_path).to eq("/merchants/#{merchant.id}/inventory_items")
   end
-
-  xit 'shows deletion comments if item status is deleted' do
-  end 
 end
