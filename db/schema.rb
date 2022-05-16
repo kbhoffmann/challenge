@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_14_181211) do
+ActiveRecord::Schema.define(version: 2022_05_16_110802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2022_05_14_181211) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "merchant_id"
+    t.text "deletion_comments"
+    t.integer "status", default: 0
     t.index ["merchant_id"], name: "index_inventory_items_on_merchant_id"
   end
 

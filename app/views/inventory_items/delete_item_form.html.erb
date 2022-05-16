@@ -1,0 +1,6 @@
+<%= form_with url: "/merchants/#{@merchant.id}/inventory_items/#{@item.id}/delete", method: :patch, local: true do |form| %>
+  <%= form.label :deletion_comments %>
+  <%= form.text_field :deletion_comments %>
+
+  <%= form.submit "Delete Item"%>
+<% end %>
