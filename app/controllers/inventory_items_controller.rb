@@ -33,7 +33,9 @@ class InventoryItemsController < ApplicationController
   end
 
   def destroy
-    InventoryItem.find(params[:id]).destroy
+    item = InventoryItem.find(params[:id])
+    item.update(status: 1)
+
     redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
   end
 

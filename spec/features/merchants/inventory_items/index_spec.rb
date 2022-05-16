@@ -42,10 +42,15 @@ RSpec.describe 'merchant item index page' do
 
     visit "/merchants/#{merchant.id}/inventory_items"
 
+    expect(item_1.status).to eq('active')
+    expect(item_2.status).to eq('active')
+
     click_link "Delete #{item_1.name}"
 
     expect(current_path).to eq("/merchants/#{merchant.id}/inventory_items")
-    expect(page).to_not have_content(item_1.name)
-    expect(page).to have_content(item_2.name)
+
+    deleted_item = InventoryItem.find(item_1.id)
+    expect(deleted_item.status).to eq('deleted')
+    expect(item_2.status).to eq('active')
   end
 end
