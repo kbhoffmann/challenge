@@ -5,4 +5,5 @@ class InventoryItem < ApplicationRecord
   validates :name, :description, :inventory_count, presence: true
   validates_numericality_of :inventory_count, greater_than: 0
   validates_numericality_of :price, greater_than: 0
+  enum status: {active: 0, deleted: 1}
 end

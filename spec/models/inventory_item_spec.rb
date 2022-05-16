@@ -14,5 +14,6 @@ RSpec.describe InventoryItem, type: :model do
     it { should validate_numericality_of(:price) }
     it { should validate_numericality_of(:inventory_count) }
     it { should validate_numericality_of(:price).is_greater_than(0)}
+    it { should define_enum_for(:status).with_values(active: 0, deleted: 1) }
   end
 end
