@@ -61,6 +61,7 @@ RSpec.describe 'merchant item index page' do
     expect(page).to have_content(deleted_item.deletion_comments)
     expect(item_2.status).to eq('active')
     expect(current_path).to eq("/merchants/#{merchant.id}/inventory_items")
+    expect(page).to have_content("Successfully Deleted #{item_1.name}")
   end
 
   it 'can un-delete an item' do
@@ -82,5 +83,6 @@ RSpec.describe 'merchant item index page' do
     expect(un_deleted_item.status).to eq('active')
     expect(un_deleted_item.deletion_comments).to be nil
     expect(item_2.status).to eq('active')
+    expect(page).to have_content("Successfully Undeleted #{item_1.name}")
   end
 end

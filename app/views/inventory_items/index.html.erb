@@ -7,7 +7,9 @@
   <p>Description: <%= item.description %></p>
   <p>Price: <%= number_to_currency(item.price) %></p>
   <p>Inventory Count: <%= item.inventory_count %></p>
+
   <p><%= link_to "Edit #{item.name}", "/merchants/#{@merchant.id}/inventory_items/#{item.id}/edit" %></p>
+  
   <p>Item Status: <%= item.status %></p>
     <% if item.status == 'deleted' %>
       <p>Deletion Comments: <%= item.deletion_comments %></p>

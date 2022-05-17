@@ -42,6 +42,7 @@ class InventoryItemsController < ApplicationController
     item.update(status: 1, deletion_comments: comments )
 
     redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
+    flash[:alert] = "Successfully Deleted #{item.name}"
   end
 
   def un_delete_item
@@ -49,6 +50,7 @@ class InventoryItemsController < ApplicationController
     item.update(status: 0, deletion_comments: nil )
 
     redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
+    flash[:alert] = "Successfully Undeleted #{item.name}"
   end
 
   private
