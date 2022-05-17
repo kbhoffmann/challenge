@@ -1,4 +1,7 @@
 # README
+
+### Take home challenge with deleting, allow deletion comments and undeletion of inventory items.
+
 #### Project stats:
  ![languages](https://img.shields.io/github/languages/top/kbhoffmann/challenge?color=red)
  ![closed PRs](https://img.shields.io/github/issues-pr-closed/kbhoffmann/challenge?style=flat-square)   
@@ -27,3 +30,7 @@
 
 → [Try it out here in production on Heroku](https://frozen-retreat-63317.herokuapp.com/)  
 
+### Database tables and their relationships for user story regarding deleting an item
+(Note: other tables exist in the database schema that would be used for other user stories)
+
+<img width="753" alt="Screen Shot 2022-05-17 at 14 57 48" src="https://user-images.githubusercontent.com/84674761/168909255-011d6d8e-57f0-46ac-87ed-01e663355f60.png">
