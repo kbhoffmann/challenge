@@ -12,12 +12,12 @@ class InventoryItemsController < ApplicationController
     item = merchant.inventory_items.new(item_params)
 
     if item.save
-      redirect_to "/merchants/#{merchant.id}/inventory_items"
+      redirect_to merchant_inventory_items_path
     else
       message = item.errors.full_messages.to_sentence
       flash[:notice] = "Item not created: #{message}"
 
-      redirect_to "/merchants/#{merchant.id}/inventory_items/new"
+      redirect_to new_merchant_inventory_item_path
     end
   end
 
@@ -25,13 +25,13 @@ class InventoryItemsController < ApplicationController
 
   def update
     if item.update(item_params)
-      redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
+      redirect_to merchant_inventory_items_path
       flash[:alert] = "Successfully Updated Item"
     else
       message = item.errors.full_messages.to_sentence
       flash[:notice] = "Item not updated: #{message}"
 
-      redirect_to "/merchants/#{merchant.id}/inventory_items/#{item.id}/edit"
+      redirect_to edit_merchant_inventory_item_path
     end
   end
 
@@ -41,14 +41,14 @@ class InventoryItemsController < ApplicationController
     comments = params["deletion_comments"]
     item.update(status: 1, deletion_comments: comments )
 
-    redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
+    redirect_to merchant_inventory_items_path
     flash[:alert] = "Successfully Deleted #{item.name}"
   end
 
   def un_delete_item
     item.update(status: 0, deletion_comments: nil )
 
-    redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
+    redirect_to merchant_inventory_items_path
     flash[:alert] = "Successfully Undeleted #{item.name}"
   end
 
