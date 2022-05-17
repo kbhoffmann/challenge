@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/', to: 'welcome#index'
+
   resources :merchants, only: [:show] do
     resources :inventory_items, except: [:delete]
     get '/inventory_items/:id/delete_item', to: 'inventory_items#delete_item_form'
