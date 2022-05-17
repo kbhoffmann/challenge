@@ -1,5 +1,6 @@
 class InventoryItemsController < ApplicationController
   before_action :merchant, except: [:delete_item, :un_delete_item, :update]
+  before_action :item, only: [:edit, :delete_item, :un_delete_item, :delete_item_form]
 
   def index
     @items = @merchant.inventory_items
@@ -20,13 +21,9 @@ class InventoryItemsController < ApplicationController
     end
   end
 
-  def edit
-    @item = InventoryItem.find(params[:id])
-  end
+  def edit; end
 
   def update
-    item = InventoryItem.find(params[:id])
-
     if item.update(item_params)
       redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
       flash[:alert] = "Successfully Updated Item"
@@ -38,12 +35,9 @@ class InventoryItemsController < ApplicationController
     end
   end
 
-  def delete_item_form
-    @item = InventoryItem.find(params[:id])
-  end
+  def delete_item_form; end
 
   def delete_item
-    item = InventoryItem.find(params[:id])
     comments = params["deletion_comments"]
     item.update(status: 1, deletion_comments: comments )
 
@@ -52,7 +46,6 @@ class InventoryItemsController < ApplicationController
   end
 
   def un_delete_item
-    item = InventoryItem.find(params[:id])
     item.update(status: 0, deletion_comments: nil )
 
     redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
@@ -63,6 +56,10 @@ class InventoryItemsController < ApplicationController
 
   def merchant
     @merchant = Merchant.find(params[:merchant_id])
+  end
+
+  def item
+    @item = InventoryItem.find(params[:id])
   end
 
   def item_params
