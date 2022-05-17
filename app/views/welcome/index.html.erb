@@ -1,0 +1,7 @@
+<h1>Welcome to my Shopify Challenge Logistics Company Page</h1>
+
+<h3>Click a merchant's name below to see their details!</h3>
+
+<% @merchants.each do |merchant| %>
+  <p><%= link_to "#{merchant.name}", "/merchants/#{merchant.id}" %></p>
+<% end %>
