@@ -27,9 +27,15 @@ class InventoryItemsController < ApplicationController
   def update
     item = InventoryItem.find(params[:id])
 
-    item.update(item_params)
-    redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
-    flash[:alert] = "Successfully Updated Item"
+    if item.update(item_params)
+      redirect_to "/merchants/#{params[:merchant_id]}/inventory_items"
+      flash[:alert] = "Successfully Updated Item"
+    else
+      message = item.errors.full_messages.to_sentence
+      flash[:notice] = "Item not updated: #{message}"
+
+      redirect_to "/merchants/#{merchant.id}/inventory_items/#{item.id}/edit"
+    end
   end
 
   def delete_item_form
