@@ -1,0 +1,9 @@
+<h1>Merchant Name: <%= @merchant.name %></h1>
+
+<h1>Merchant Details:</h1>
+
+<p>Additional information I may include in this page could
+   be the merchant email address, phone number, mailing address, etc.
+   That information would have to be added to the Merchant table. </p>
+
+   <h3><%= link_to "See Item Inventory ", "/merchants/#{@merchant.id}/inventory_items/" %></h3>
