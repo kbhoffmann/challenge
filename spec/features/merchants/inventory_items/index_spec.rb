@@ -7,6 +7,7 @@ RSpec.describe 'merchant item index page' do
     item_2 = merchant_1.inventory_items.create!(name: "Item 2 Name", description: "Item 2 Description", price: 20.00, inventory_count: 200)
     merchant_2 = Merchant.create!(name: "Merchant Two Name")
     item_3 = merchant_2.inventory_items.create!(name: "Item 3 Name", description: "Item 3 Description", price: 100.00, inventory_count: 50)
+
     visit "/merchants/#{merchant_1.id}/inventory_items"
 
     expect(page).to have_content("Item 1 Name")
@@ -29,9 +30,10 @@ RSpec.describe 'merchant item index page' do
   it 'each inventory item has a link to update it' do
     merchant = Merchant.create!(name: "Merchant One Name")
     item_1 = merchant.inventory_items.create!(name: "Item 1 Name", description: "Item 1 Description", price: 40.00, inventory_count: 100)
+
     visit "/merchants/#{merchant.id}/inventory_items"
 
-    click_link "Edit #{item_1.name}"
+    click_link "Edit Details for #{item_1.name}"
 
     expect(current_path).to eq("/merchants/#{merchant.id}/inventory_items/#{item_1.id}/edit")
   end

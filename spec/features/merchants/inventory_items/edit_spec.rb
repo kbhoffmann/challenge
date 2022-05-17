@@ -9,7 +9,7 @@ RSpec.describe 'Merchant Inventory Items Edit' do
 
     visit "/merchants/#{merchant_1.id}/inventory_items"
 
-    click_link "Edit #{item_1.name}"
+    click_link "Edit Details for #{item_1.name}"
 
     expect(current_path).to eq("/merchants/#{merchant_1.id}/inventory_items/#{item_1.id}/edit")
 
