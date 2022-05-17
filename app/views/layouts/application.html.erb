@@ -10,6 +10,12 @@
   </head>
 
   <body>
+      <header class = navbar>
+      <div class="topnav" id="siteWideNav">
+          <h4><%=link_to "Back to List of all Merchants", "/" %></h4>
+      </div>
+  </header>
+
      <% flash.each do |type, msg| %>
       <div>
         <%= msg %>
