@@ -2,20 +2,18 @@ class InventoryItemsController < ApplicationController
   before_action :merchant, except: [:delete_item, :un_delete_item, :update]
   before_action :item, only: [:edit, :delete_item, :un_delete_item, :delete_item_form, :update]
 
-  def index
-    @items = @merchant.inventory_items
-  end
+  def index; end
 
   def new; end
 
   def create
     item = merchant.inventory_items.new(item_params)
-
     if item.save
       redirect_to merchant_inventory_items_path
+      flash[:notice] = "Successfully Added #{item.name}"
     else
       message = item.errors.full_messages.to_sentence
-      flash[:notice] = "Item not created: #{message}"
+      flash[:error] = "Item not created: #{message}"
 
       redirect_to new_merchant_inventory_item_path
     end
@@ -26,12 +24,10 @@ class InventoryItemsController < ApplicationController
   def update
     if item.update(item_params)
       redirect_to merchant_inventory_items_path
-      flash[:alert] = "Successfully Updated Item"
+      flash[:notice] = "Successfully Updated Item"
     else
-      message = item.errors.full_messages.to_sentence
-      flash[:notice] = "Item not updated: #{message}"
-
       redirect_to edit_merchant_inventory_item_path
+      flash[:alert] = "Item not updated"
     end
   end
 
