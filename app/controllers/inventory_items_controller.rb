@@ -2,9 +2,7 @@ class InventoryItemsController < ApplicationController
   before_action :merchant, except: [:delete_item, :un_delete_item, :update]
   before_action :item, only: [:edit, :delete_item, :un_delete_item, :delete_item_form, :update]
 
-  def index
-    @items = @merchant.inventory_items
-  end
+  def index; end
 
   def new; end
 
