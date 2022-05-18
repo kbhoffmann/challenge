@@ -8,7 +8,6 @@ class InventoryItemsController < ApplicationController
 
   def create
     item = merchant.inventory_items.new(item_params)
-
     if item.save
       redirect_to merchant_inventory_items_path
       flash[:notice] = "Successfully Added #{item.name}"
