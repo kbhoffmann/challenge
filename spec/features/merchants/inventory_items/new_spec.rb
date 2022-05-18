@@ -40,6 +40,7 @@ RSpec.describe 'New Inventory Item Creation' do
     expect(new_item.price).to eq(25)
     merchant_1_items = Merchant.find(merchant_1.id).inventory_items
     expect(merchant_1_items.count).to eq(3)
+    expect(page).to have_content("Successfully Added #{new_item.name}")
   end
 
   it 'shows an error if the fields are not filled out correctly' do
